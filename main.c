@@ -19,7 +19,7 @@ void main(void){
     int direction = 1;
     int angle = -90;
     while(1){
-		angle2PWM(0);
+		angle2PWM(angle);
         angle += direction;
         if(angle == 90){
             direction = -1;
