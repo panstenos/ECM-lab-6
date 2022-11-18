@@ -14,10 +14,18 @@
 void main(void){
     Timer0_init();
     Interrupts_init();
+    TRISCbits.TRISC5 = 0;
 	//don't forget TRIS for your output!
-
+    int direction = 1;
+    int angle = -90;
     while(1){
-		//write your code to call angle2PWM() to set the servo angle
-
+		angle2PWM(0);
+        angle += direction;
+        if(angle == 90){
+            direction = -1;
+        }else if(angle == -90){
+            direction = 1;
+        }
+        __delay_ms(50);
     }
 }

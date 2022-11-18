@@ -21,12 +21,12 @@ void __interrupt(high_priority) HighISR()
 {
     if (PIR0bits.TMR0IF)
     {
-        if(LAT?bits.???){ //if output pin currently high
+        if(LATCbits.LC5){ //if output pin currently high
             write16bitTMR0val(65535-off_period); //set new off_period
-            LAT?bits.???=0; //turn your output pin off here
+            LATCbits.LC5=0; //turn your output pin off here
         } else {
             write16bitTMR0val(65535-on_period);  //set new on_period
-            LAT?bits.???=1; //turn your output pin off here
+            LATCbits.LC5=1; //turn your output pin off here
         }
     }
     PIR0bits.TMR0IF=0; 
@@ -39,7 +39,7 @@ void Timer0_init(void)
 {
     T0CON1bits.T0CS=0b010; // Fosc/4
     T0CON1bits.T0ASYNC=1; // see datasheet errata - needed to ensure correct operation when Fosc/4 used as clock source
-    T0CON1bits.T0CKPS=????; // need to work out prescaler to produce a timer tick corresponding to 1 deg angle change
+    T0CON1bits.T0CKPS=0b0111; // need to work out prescaler to produce a timer tick corresponding to 1 deg angle change
     T0CON0bits.T016BIT=1;	//16bit mode	
 	
     // it's a good idea to initialise the timer so that it initially overflows after 20 ms
@@ -64,6 +64,6 @@ void write16bitTMR0val(unsigned int tmp)
  * off_period is the remaining time left (calculate from on_period and T_PERIOD)
 ************************************/
 void angle2PWM(int angle){
-    on_period = ???;	//avoid floating point numbers and be careful of calculation order...
-    off_period = ???;
+    on_period = ((angle + 90)*4 + 225)*25/90;	//avoid floating point numbers and be careful of calculation order...
+    off_period = T_PERIOD - on_period;
 }
