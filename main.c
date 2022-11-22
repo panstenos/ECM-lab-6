@@ -8,24 +8,35 @@
 
 #include <xc.h>
 #include "rc_servo.h"
+#include "dc_motor.h"
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz  
 
 void main(void){
     Timer0_init();
     Interrupts_init();
-    TRISCbits.TRISC5 = 0;
+    initDCmotorsPWM(99);
+    //TRISCbits.TRISC5 = 0;
+    unsigned int PWMcycle = 99;
 	//don't forget TRIS for your output!
-    int direction = 1;
-    int angle = -90;
+    struct DC_motor motorL, motorR; // declare two motor structures
+    
+    motorL.power=0; //zero power to start
+    motorL.direction=1; //set default motor direction
+    motorL.brakemode=1; //brake mode (slow decay)
+    motorL.posDutyHighByte=(unsigned char *)(&CCPR1H); //store address of CCP1 duty high byte
+    motorL.negDutyHighByte=(unsigned char *)(&CCPR2H); //store address of CCP2 duty high byte
+    motorL.PWMperiod=PWMcycle; //store PWMperiod for motor (value of T2PR in this case)
+    
+    motorR.power=0; //zero power to start
+    motorR.direction=1; //set default motor direction
+    motorR.brakemode=1; //brake mode (slow decay)
+    motorR.posDutyHighByte=(unsigned char *)(&CCPR3H); //store address of CCP1 duty high byte
+    motorR.negDutyHighByte=(unsigned char *)(&CCPR4H); //store address of CCP2 duty high byte
+    motorR.PWMperiod=PWMcycle; //store PWMperiod for motor (value of T2PR in this case)
     while(1){
-		angle2PWM(angle);
-        angle += direction;
-        if(angle == 90){
-            direction = -1;
-        }else if(angle == -90){
-            direction = 1;
-        }
-        __delay_ms(50);
+        turnRight(&motorL, &motorR);
+        stop(&motorL, &motorR);
+        __delay_ms(1000);
     }
 }

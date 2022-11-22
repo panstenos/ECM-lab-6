@@ -2,8 +2,17 @@
 #include "dc_motor.h"
 
 // function initialise T2 and CCP for DC motor control
-void initDCmotorsPWM(unsigned int PWMperiod){
+void initDCmotorsPWM(int PWMperiod){
     //initialise your TRIS and LAT registers for PWM  
+    TRISEbits.TRISE2=0; //output on RE2
+    TRISCbits.TRISC7=0; //output on RC7
+    TRISGbits.TRISG6=0; //output on RG6
+    TRISEbits.TRISE4=0; //output on RE4
+    
+    LATEbits.LATE2=0; // set output of RE2 to 0
+    LATCbits.LATC7=0; // set output of RC7 to 0
+    LATGbits.LATG6=0; // set output of RG6 to 0
+    LATEbits.LATE4=0; // set output of RE4 to 0
     
     //configure PPS to map CCP modules to pins
     RE2PPS=0x05; //CCP1 on RE2
@@ -12,13 +21,13 @@ void initDCmotorsPWM(unsigned int PWMperiod){
     RG6PPS=0x08; //CCP4 on RG6
 
     // timer 2 config
-    T2CONbits.CKPS=???; // 1:??? prescaler
+    T2CONbits.CKPS=0b100; // 1:16 prescaler
     T2HLTbits.MODE=0b00000; // Free Running Mode, software gate only
     T2CLKCONbits.CS=0b0001; // Fosc/4
 
     // Tpwm*(Fosc/4)/prescaler - 1 = PTPER
     // 0.0001s*16MHz/16 -1 = 99
-    T2PR=??; //Period reg 10kHz base period
+    T2PR=99; //Period reg 10kHz base period
     T2CONbits.ON=1;
     
     //setup CCP modules to output PMW signals
@@ -76,26 +85,44 @@ void setMotorPWM(DC_motor *m)
 }
 
 //function to stop the robot gradually 
-void stop(DC_motor *mL, DC_motor *mR)
+void stop(struct DC_motor *mL, struct DC_motor *mR)
 {
-
+    (*mL).power=0;
+    (*mR).power=0;
+    setMotorPWM(mL);
+    setMotorPWM(mR);
 }
 
 //function to make the robot turn left 
-void turnLeft(DC_motor *mL, DC_motor *mR)
+void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
 {
-
+    (*mL).direction=1;
+    (*mR).direction=1;
+    (*mL).power=0;   
+    (*mR).power=30;
+    setMotorPWM(mL);
+    setMotorPWM(mR);
 }
-
 //function to make the robot turn right 
-void turnRight(DC_motor *mL, DC_motor *mR)
+void turnRight(struct DC_motor *mL, struct DC_motor *mR)
 {
- 
+    (*mL).direction=1;
+    (*mR).direction=1;
+    (*mL).power=30;   
+    (*mR).power=0;
+    setMotorPWM(mL);
+    setMotorPWM(mR); 
+    __delay_ms(750);
 }
 
 //function to make the robot go straight
-void fullSpeedAhead(DC_motor *mL, DC_motor *mR)
+void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
 {
-
+    (*mL).direction=1;
+    (*mR).direction=1;
+    (*mL).power=50;
+    (*mR).power=50;
+    setMotorPWM(mL);
+    setMotorPWM(mR);
 }
 
