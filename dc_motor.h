@@ -21,5 +21,7 @@ void stop(DC_motor *mL, DC_motor *mR);
 void turnLeft(DC_motor *mL, DC_motor *mR);
 void turnRight(DC_motor *mL, DC_motor *mR);
 void fullSpeedAhead(DC_motor *mL, DC_motor *mR);
+void TimedfullSpeedAhead(DC_motor *mL, DC_motor *mR, unsigned int);
+void increment_seconds(void);
 
 #endif

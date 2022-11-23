@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=../dc_motor.c ../main.c ../rc_servo.c
+SOURCEFILES_QUOTED_IF_SPACED=../dc_motor.c ../main.c ../timers.c ../interrupts.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1472/dc_motor.p1 ${OBJECTDIR}/_ext/1472/main.p1 ${OBJECTDIR}/_ext/1472/rc_servo.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1472/dc_motor.p1.d ${OBJECTDIR}/_ext/1472/main.p1.d ${OBJECTDIR}/_ext/1472/rc_servo.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1472/dc_motor.p1 ${OBJECTDIR}/_ext/1472/main.p1 ${OBJECTDIR}/_ext/1472/timers.p1 ${OBJECTDIR}/_ext/1472/interrupts.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1472/dc_motor.p1.d ${OBJECTDIR}/_ext/1472/main.p1.d ${OBJECTDIR}/_ext/1472/timers.p1.d ${OBJECTDIR}/_ext/1472/interrupts.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/_ext/1472/dc_motor.p1 ${OBJECTDIR}/_ext/1472/main.p1 ${OBJECTDIR}/_ext/1472/rc_servo.p1
+OBJECTFILES=${OBJECTDIR}/_ext/1472/dc_motor.p1 ${OBJECTDIR}/_ext/1472/main.p1 ${OBJECTDIR}/_ext/1472/timers.p1 ${OBJECTDIR}/_ext/1472/interrupts.p1
 
 # Source Files
-SOURCEFILES=../dc_motor.c ../main.c ../rc_servo.c
+SOURCEFILES=../dc_motor.c ../main.c ../timers.c ../interrupts.c
 
 
 
@@ -110,13 +110,21 @@ ${OBJECTDIR}/_ext/1472/main.p1: ../main.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/_ext/1472/main.d ${OBJECTDIR}/_ext/1472/main.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/_ext/1472/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/1472/rc_servo.p1: ../rc_servo.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/_ext/1472/timers.p1: ../timers.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/_ext/1472" 
-	@${RM} ${OBJECTDIR}/_ext/1472/rc_servo.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/1472/rc_servo.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit4   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/1472/rc_servo.p1 ../rc_servo.c 
-	@-${MV} ${OBJECTDIR}/_ext/1472/rc_servo.d ${OBJECTDIR}/_ext/1472/rc_servo.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/1472/rc_servo.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	@${RM} ${OBJECTDIR}/_ext/1472/timers.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/1472/timers.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit4   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/1472/timers.p1 ../timers.c 
+	@-${MV} ${OBJECTDIR}/_ext/1472/timers.d ${OBJECTDIR}/_ext/1472/timers.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/1472/timers.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/_ext/1472/interrupts.p1: ../interrupts.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/_ext/1472" 
+	@${RM} ${OBJECTDIR}/_ext/1472/interrupts.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/1472/interrupts.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit4   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/1472/interrupts.p1 ../interrupts.c 
+	@-${MV} ${OBJECTDIR}/_ext/1472/interrupts.d ${OBJECTDIR}/_ext/1472/interrupts.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/1472/interrupts.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 else
 ${OBJECTDIR}/_ext/1472/dc_motor.p1: ../dc_motor.c  nbproject/Makefile-${CND_CONF}.mk 
@@ -135,13 +143,21 @@ ${OBJECTDIR}/_ext/1472/main.p1: ../main.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/_ext/1472/main.d ${OBJECTDIR}/_ext/1472/main.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/_ext/1472/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/_ext/1472/rc_servo.p1: ../rc_servo.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/_ext/1472/timers.p1: ../timers.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/_ext/1472" 
-	@${RM} ${OBJECTDIR}/_ext/1472/rc_servo.p1.d 
-	@${RM} ${OBJECTDIR}/_ext/1472/rc_servo.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/1472/rc_servo.p1 ../rc_servo.c 
-	@-${MV} ${OBJECTDIR}/_ext/1472/rc_servo.d ${OBJECTDIR}/_ext/1472/rc_servo.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/_ext/1472/rc_servo.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	@${RM} ${OBJECTDIR}/_ext/1472/timers.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/1472/timers.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/1472/timers.p1 ../timers.c 
+	@-${MV} ${OBJECTDIR}/_ext/1472/timers.d ${OBJECTDIR}/_ext/1472/timers.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/1472/timers.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/_ext/1472/interrupts.p1: ../interrupts.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/_ext/1472" 
+	@${RM} ${OBJECTDIR}/_ext/1472/interrupts.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/1472/interrupts.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/1472/interrupts.p1 ../interrupts.c 
+	@-${MV} ${OBJECTDIR}/_ext/1472/interrupts.d ${OBJECTDIR}/_ext/1472/interrupts.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/1472/interrupts.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 
