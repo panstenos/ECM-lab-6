@@ -8,24 +8,27 @@
 
 #include <xc.h>
 #include "rc_servo.h"
+#include "ADC.h"
+
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz  
 
 void main(void){
     Timer0_init();
     Interrupts_init();
+    ADC_init();
+    
+    unsigned int treshold = 60;
+
     TRISCbits.TRISC5 = 0;
 	//don't forget TRIS for your output!
-    int direction = 1;
-    int angle = -90;
     while(1){
-		angle2PWM(angle);
-        angle += direction;
-        if(angle == 90){
-            direction = -1;
-        }else if(angle == -90){
-            direction = 1;
+        if(ADC_getval() <= treshold){ //Check if it's too dark
+            angle2PWM(-90);
+        }else{
+            angle2PWM(90);
         }
+
         __delay_ms(50);
     }
 }
