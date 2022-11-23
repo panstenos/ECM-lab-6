@@ -96,6 +96,30 @@ void stop(struct DC_motor *mL, struct DC_motor *mR)
 //function to make the robot turn left 
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
 {
+    /* Small surface roughness turning
+    int i;
+    for(i=20;i<35;i+=5){ //increase power from 20 to 30 in steps of 5
+    (*mL).direction=1;
+    (*mR).direction=1;
+    (*mL).power=0;   
+    (*mR).power=i;
+    setMotorPWM(mL);
+    setMotorPWM(mR); 
+    __delay_ms(150); //turn at the specified power for 135ms
+    }
+    for(i=25;i>5;i-=5){ //decrease power from 25 to 10 in steps of 5
+    (*mL).direction=1;
+    (*mR).direction=1;
+    (*mL).power=0;   
+    (*mR).power=i;
+    setMotorPWM(mL);
+    setMotorPWM(mR); 
+    __delay_ms(165); //turn at the specified power for 160ms
+    if(i==10){__delay_ms(200);} //turn with 10 power for another 120ms
+    }
+    */
+    
+    /* High surface roughness turning */
     int i;
     for(i=20;i<35;i+=5){ //increase power from 20 to 30 in steps of 5
     (*mL).direction=1;
@@ -120,26 +144,51 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
 //function to make the robot turn right 
 void turnRight(struct DC_motor *mL, struct DC_motor *mR)
 {
+    /*  Small surface roughness turning */
     int i;
-    for(i=20;i<35;i+=5){ //increase power from 20 to 30 in steps of 5
+    for(i=20;i<30;i+=5){ //increase power from 20 to 30 in steps of 5
+    (*mL).direction=1;
+    (*mR).direction=0;
+    (*mL).power=i;   
+    (*mR).power=i;
+    setMotorPWM(mL);
+    setMotorPWM(mR); 
+    __delay_ms(110); //turn at the specified power for 135ms
+    }
+    for(i=20;i>5;i-=5){ //decrease power from 25 to 10 in steps of 5
+    (*mL).direction=1;
+    (*mR).direction=0;
+    (*mL).power=i;   
+    (*mR).power=i;
+    setMotorPWM(mL);
+    setMotorPWM(mR); 
+    __delay_ms(130); //turn at the specified power for 160ms
+    if(i==10){__delay_ms(280);} //turn with 10 power for another 120ms
+    }
+    // */
+    
+    /* High surface roughness turning
+    int i;
+    for(i=25;i<40;i+=5){ //increase power from 20 to 30 in steps of 5
+    (*mL).direction=0;
+    (*mR).direction=1;
+    (*mL).power=i;   
+    (*mR).power=0;
+    setMotorPWM(mL);
+    setMotorPWM(mR); 
+    __delay_ms(160); //turn at the specified power for 135ms
+    }
+    for(i=30;i>10;i-=5){ //decrease power from 25 to 10 in steps of 5
     (*mL).direction=1;
     (*mR).direction=1;
     (*mL).power=i;   
     (*mR).power=0;
     setMotorPWM(mL);
     setMotorPWM(mR); 
-    __delay_ms(150); //turn at the specified power for 135ms
+    __delay_ms(175); //turn at the specified power for 160ms
+    if(i==15){__delay_ms(200);} //turn with 10 power for another 120ms
     }
-    for(i=25;i>5;i-=5){ //decrease power from 25 to 10 in steps of 5
-    (*mL).direction=1;
-    (*mR).direction=1;
-    (*mL).power=i;   
-    (*mR).power=0;
-    setMotorPWM(mL);
-    setMotorPWM(mR); 
-    __delay_ms(165); //turn at the specified power for 160ms
-    if(i==10){__delay_ms(200);} //turn with 10 power for another 120ms
-    }
+    */
 }
 
 //function to make the robot go straight
