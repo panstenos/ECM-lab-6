@@ -123,23 +123,23 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
     
     /* High surface roughness turning */
     int i;
-    for(i=20;i<35;i+=5){ //increase power from 20 to 30 in steps of 5
+    for(i=20;i<30;i+=5){ //increase power from 20 to 30 in steps of 5
     (*mL).direction=0;
     (*mR).direction=1;
     (*mL).power=i;   
     (*mR).power=i;
     setMotorPWM(mL);
     setMotorPWM(mR); 
-    __delay_ms(130); //turn at the specified power for 135ms
+    __delay_ms(138); //turn at the specified power for 135ms
     }
-    for(i=25;i>5;i-=5){ //decrease power from 25 to 10 in steps of 5
+    for(i=20;i>5;i-=5){ //decrease power from 25 to 10 in steps of 5
     (*mL).direction=0;
     (*mR).direction=1;
     (*mL).power=i;   
     (*mR).power=i;
     setMotorPWM(mL);
     setMotorPWM(mR); 
-    __delay_ms(160); //turn at the specified power for 160ms
+    __delay_ms(150); //turn at the specified power for 160ms
     if(i==10){__delay_ms(350);} //turn with 10 power for another 120ms
     }
     // */
@@ -179,16 +179,16 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR)
     (*mR).power=i;
     setMotorPWM(mL);
     setMotorPWM(mR); 
-    __delay_ms(130); //turn at the specified power for 135ms
+    __delay_ms(200); //turn at the specified power for 135ms
     }
-    for(i=35;i>5;i-=5){ //decrease power from 25 to 10 in steps of 5
+    for(i=20;i>5;i-=5){ //decrease power from 25 to 10 in steps of 5
     (*mL).direction=1;
     (*mR).direction=0;
     (*mL).power=i;   
     (*mR).power=i;
     setMotorPWM(mL);
     setMotorPWM(mR); 
-    __delay_ms(140); //turn at the specified power for 160ms
+    __delay_ms(200); //turn at the specified power for 160ms
     if(i==10){__delay_ms(350);} //turn with 10 power for another 120ms
     }
 }
@@ -211,8 +211,8 @@ void TimedfullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR, unsigned int 
     {
     (*mL).direction=1;
     (*mR).direction=1;
-    (*mL).power=20;
-    (*mR).power=17;
+    (*mL).power=25;
+    (*mR).power=22;
     setMotorPWM(mL);
     setMotorPWM(mR);
     }
