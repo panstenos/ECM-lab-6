@@ -130,7 +130,7 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
     (*mR).power=i;
     setMotorPWM(mL);
     setMotorPWM(mR); 
-    __delay_ms(138); //turn at the specified power for 135ms
+    __delay_ms(137); //turn at the specified power for 135ms
     }
     for(i=20;i>5;i-=5){ //decrease power from 25 to 10 in steps of 5
     (*mL).direction=0;
@@ -139,7 +139,7 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
     (*mR).power=i;
     setMotorPWM(mL);
     setMotorPWM(mR); 
-    __delay_ms(150); //turn at the specified power for 160ms
+    __delay_ms(146); //turn at the specified power for 160ms
     if(i==10){__delay_ms(350);} //turn with 10 power for another 120ms
     }
     // */
@@ -179,7 +179,7 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR)
     (*mR).power=i;
     setMotorPWM(mL);
     setMotorPWM(mR); 
-    __delay_ms(200); //turn at the specified power for 135ms
+    __delay_ms(213); //turn at the specified power for 135ms
     }
     for(i=20;i>5;i-=5){ //decrease power from 25 to 10 in steps of 5
     (*mL).direction=1;
@@ -188,7 +188,7 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR)
     (*mR).power=i;
     setMotorPWM(mL);
     setMotorPWM(mR); 
-    __delay_ms(200); //turn at the specified power for 160ms
+    __delay_ms(216); //turn at the specified power for 160ms
     if(i==10){__delay_ms(350);} //turn with 10 power for another 120ms
     }
 }

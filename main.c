@@ -38,7 +38,7 @@ void main(void){
     motorR.negDutyHighByte=(unsigned char *)(&CCPR4H); //store address of CCP2 duty high byte
     motorR.PWMperiod=PWMcycle; //store PWMperiod for motor (value of T2PR in this case)
     while(1){
-        if (!PORTFbits.RF2)
+        if (!PORTFbits.RF2) // run when F2 is pressed
         {
             __delay_ms(2000);
             int i;
